@@ -21,8 +21,7 @@ public class App
         currentSession.beginTransaction();
 
             Person person = currentSession.get(Person.class, 2);
-            person.setName("New name");
-            currentSession.getTransaction().getStatus();
+            currentSession.delete(person);
 
 
             currentSession.getTransaction().commit();
