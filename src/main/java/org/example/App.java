@@ -20,8 +20,11 @@ public class App
         try{
         currentSession.beginTransaction();
 
-            Person person = currentSession.get(Person.class, 2);
-            currentSession.delete(person);
+            Person some_name = new Person("Some name", 60);
+            currentSession.save(some_name);
+
+            currentSession.getTransaction().commit();
+            System.out.println(some_name.getId());
 
 
             currentSession.getTransaction().commit();
