@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 /**
  * Hello world!
  *
@@ -20,12 +22,11 @@ public class App
         try{
         currentSession.beginTransaction();
 
-            Person some_name = new Person("Some name", 60);
-            currentSession.save(some_name);
+            List<Person> people = currentSession.createQuery("FROM Person where name LIKE 'T%'").getResultList();
 
-            currentSession.getTransaction().commit();
-            System.out.println(some_name.getId());
-
+            for(Person person: people){
+                System.out.println(person);
+            }
 
             currentSession.getTransaction().commit();
         }finally {
