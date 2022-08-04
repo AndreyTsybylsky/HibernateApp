@@ -20,13 +20,9 @@ public class App
         try{
         currentSession.beginTransaction();
 
-            Person person1 = new Person("Test1", 30);
-            Person person2 = new Person("Test2", 30);
-            Person person3 = new Person("Test3", 30);
-
-            currentSession.save(person1);
-            currentSession.save(person2);
-            currentSession.save(person3);
+            Person person = currentSession.get(Person.class, 2);
+            person.setName("New name");
+            currentSession.getTransaction().getStatus();
 
 
             currentSession.getTransaction().commit();
