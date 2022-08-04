@@ -20,11 +20,16 @@ public class App
         try{
         currentSession.beginTransaction();
 
-        Person person = currentSession.get(Person.class, 1);
-        System.out.println(person.getName());
-        System.out.println(person.getAge());
+            Person person1 = new Person("Test1", 30);
+            Person person2 = new Person("Test2", 30);
+            Person person3 = new Person("Test3", 30);
 
-        currentSession.getTransaction().commit();
+            currentSession.save(person1);
+            currentSession.save(person2);
+            currentSession.save(person3);
+
+
+            currentSession.getTransaction().commit();
         }finally {
             sessionFactory.close();
         }
